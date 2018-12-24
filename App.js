@@ -1,10 +1,11 @@
 import React from 'react';
 import { Text, View, Button } from 'react-native';
-import Icon from 'react-native-vector-icons/Ionicons';
+import Icon from 'react-native-vector-icons/FontAwesome';
 import {
   createBottomTabNavigator,
   createStackNavigator,
   createAppContainer,
+  TabBarBottom,
 } from 'react-navigation';
 
 class DetailsScreen extends React.Component {
@@ -63,6 +64,26 @@ export default createAppContainer(createBottomTabNavigator(
     Settings: SettingsStack,
   },
   {
-    /* Other configuration remains unchanged */
+    defaultNavigationOptions: ({ navigation }) => ({
+      tabBarIcon: ({ focused, tintColor }) => {
+        const { routeName } = navigation.state;
+        let iconName;
+        if (routeName === 'Home') {
+          iconName = 'home';
+        } else if (routeName === 'Settings') {
+          iconName = 'cog';
+        }
+
+        // You can return any component that you like here! We usually use an
+        // icon component from react-native-vector-icons
+        return <Icon name={iconName} size={25} color={tintColor} />;
+      },
+    }),
+    tabBarComponent: TabBarBottom,
+    tabBarPosition: 'bottom',
+    tabBarOptions: {
+      activeTintColor: 'tomato',
+      inactiveTintColor: 'black',
+    }
   }
 ));
