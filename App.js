@@ -1,6 +1,7 @@
 import React from 'react';
 import { Text, View, Button } from 'react-native';
 import Icon from 'react-native-vector-icons/FontAwesome';
+import Lang from './Languages';
 import {
   createBottomTabNavigator,
   createStackNavigator,
@@ -73,9 +74,6 @@ export default createAppContainer(createBottomTabNavigator(
         } else if (routeName === 'Settings') {
           iconName = 'cog';
         }
-
-        // You can return any component that you like here! We usually use an
-        // icon component from react-native-vector-icons
         return <Icon name={iconName} size={25} color={tintColor} />;
       },
     }),
